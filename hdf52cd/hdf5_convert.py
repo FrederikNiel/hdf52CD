@@ -252,7 +252,7 @@ def create_replacement_dataset(parent: h5py.Group, name: str, old: h5py.Dataset)
 
 
 def unique_replacement_dataset_name(parent: h5py.Group, original_name: str) -> str:
-    base = f"__hrdf2cd_replacement_{original_name}"
+    base = f"__hdf52cd_replacement_{original_name}"
     if base not in parent:
         return base
     for index in range(1, 1000):
