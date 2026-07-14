@@ -27,7 +27,6 @@ python3 -m venv .venv
 # Install CPU PyTorch first from the official CPU wheel index.
 pip install torch
 pip install opencv-python
-pip install -e ".[test]"
 ```
 
 The NIGHTRIDER checkout is expected at `/home/labpcadm/Desktop/NIGHTRIDER` by

@@ -5,3 +5,4 @@
 .venv/
 venv/
 hdf52cd.egg-info/
+__pycache__/
