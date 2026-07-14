@@ -58,7 +58,7 @@ class _NightriderSource:
                 f"NIGHTRIDER GPU files were not found in {direct}, and {self.repo_path} is not a Git checkout"
             )
 
-        self._tmpdir = tempfile.TemporaryDirectory(prefix="hrdf2cd-nightrider-")
+        self._tmpdir = tempfile.TemporaryDirectory(prefix="hdf52cd-nightrider-")
         archive = subprocess.run(
             ["git", "-C", str(self.repo_path), "archive", self.ref, "EventCamera"],
             check=True,

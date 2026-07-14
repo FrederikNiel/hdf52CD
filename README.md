@@ -1,6 +1,6 @@
 # hdf52cd
 
-Convert HRDF-style HDF5 files that contain compressed JPEG video frames into
+Convert HDF5 files that contain compressed JPEG video frames into
 index-stable CD-frame HDF5 files for AI training.
 
 The converter writes new files and keeps the original HDF5 structure, action

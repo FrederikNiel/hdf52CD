@@ -17,7 +17,7 @@ from .hdf5_convert import (
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         prog="hdf5-to-cd-dataset",
-        description="Convert HRDF HDF5 JPEG frame datasets using NIGHTRIDER gpu_pipeline CD simulation.",
+        description="Convert HDF5 JPEG frame datasets using NIGHTRIDER gpu_pipeline CD simulation.",
     )
     parser.add_argument("--input", action="append", required=True, help="Input file, glob, or directory. May be repeated.")
     parser.add_argument("--output-dir", default="cd_hdf5", help="Directory for converted HDF5 files.")
