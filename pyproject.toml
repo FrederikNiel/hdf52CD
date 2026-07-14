@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "hdf2cd"
+version = "0.2.1"
+description = "Convert HRDF HDF5 JPEG frame datasets into index-stable NIGHTRIDER CD-frame HDF5 files."
+requires-python = ">=3.10"
+dependencies = [
+  "h5py>=3.10",
+  "numpy>=1.24",
+  "opencv-python-headless>=4.8",
+  "pillow>=10.0",
+]
+
+[project.optional-dependencies]
+torch = ["torch>=2.0"]
+test = ["pytest>=8.0"]
+
+[project.scripts]
+hdf5-to-cd-dataset = "hrdf2cd.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["hrdf2cd*"]
