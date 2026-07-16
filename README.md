@@ -86,3 +86,44 @@ For `N` input JPEG frames, the output contains exactly `N` CD JPEG frames.
 - If there is only one input frame, CD frame `0` is a black grayscale JPEG.
 
 This keeps JPEG indexes aligned with action/index datasets for behavior cloning.
+
+## ROS bag to HDF5
+
+`rosbag2-to-hdf5` converts the rover ROS 2 MCAP recording into the same HDF5
+layout expected by `hdf5-to-cd-dataset`. It writes `/observations/rgb_jpeg`,
+`/observations/depth_jp2`, `/observations/state/actions`, `/transitions/*`,
+`/index/*`, and aligned sensor groups under `/observations/sensors`.
+Unhandled topics whose message packages are not installed are preserved as raw
+CDR bytes under `/raw`.
+
+The ROS reader uses the system ROS 2 Jazzy install, so source it before running:
+
+```bash
+source /opt/ros/jazzy/setup.bash
+pip install -e .
+rosbag2-to-hdf5 \
+  --metadata metadata.yaml \
+  --bag-dir . \
+  --output rover_bag_syncronized_little_light_rock_no_lidar20260703_150222_1.hdf5 \
+  --overwrite
+```
+
+By default, metadata-referenced MCAP files that are missing are skipped with a
+warning. Pass `--require-all-files` to fail instead. The default streams are:
+
+- RGB: `/zed_front/zed_front/rgb/image_rect_color/compressed`
+- Depth: `/zed_front/zed_front/depth/depth_registered`
+- Actions: `/cmd_vel` as `[linear.x, angular.z]`, clipped to `[-1, 1]`
+
+Event camera correspondence is recorded in HDF5 metadata: event camera 1 maps to
+front right and event camera 2 maps to front left.
+
+The generated file can then be passed to the CD converter:
+
+```bash
+hdf5-to-cd-dataset \
+  --input rover_bag_syncronized_little_light_rock_no_lidar20260703_150222_1.hdf5 \
+  --output-dir cd_hdf5 \
+  --frames-key /observations/rgb_jpeg
+```
+

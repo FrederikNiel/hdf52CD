@@ -12,6 +12,7 @@ dependencies = [
   "numpy>=1.24",
   "opencv-python-headless>=4.8",
   "pillow>=10.0",
+  "PyYAML>=6.0",
 ]
 
 [project.optional-dependencies]
@@ -20,7 +21,8 @@ test = ["pytest>=8.0"]
 
 [project.scripts]
 hdf5-to-cd-dataset = "hdf52cd.cli:main"
+rosbag2-to-hdf5 = "rosbag2hdf5.rosbag_convert:main"
 
 [tool.setuptools.packages.find]
 where = ["."]
-include = ["hdf52cd*"]
+include = ["hdf52cd*", "rosbag2hdf5*"]

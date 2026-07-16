@@ -13,8 +13,9 @@ import h5py
 import numpy as np
 
 
-DEFAULT_HDF5 = Path("/home/frederik/Documents/rover_rgbd_hd720_expert_400k_10pct_cd.hdf5")
-DEFAULT_FRAMES_KEY = "/observations/rgb_jpeg"
+DEFAULT_HDF5 = Path("/home/frederik/Documents/hdf52CD/rover_bag_syncronized_little_light_rock_no_lidar20260703_150222_1.hdf5")
+DEFAULT_FRAMES_KEY = "/observations/sensors/event_camera2_image_raw_compressed/data"
+DEFAULT_FRAMES_KEY = "/raw/zed_back_zed_back_depth_depth_registered/cdr"
 
 
 def hdf5_value_to_bytes(value: Any) -> bytes:
